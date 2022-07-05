@@ -2,33 +2,20 @@ import { SearchForm } from "./Components/SearchForm";
 import { Container } from "react-bootstrap";
 import { fetchCountryInfo } from "./Helpers/axios";
 import { CountryDetails } from "./Components/CountryDetails";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
-  const [str, setStr] = useState("");
-  const [country, setCountry] = useState();
-
-  const setString = (e) => {
-    e.preventDefault();
-    const { value } = e.target;
-    setStr(value);
-  };
-
-  const setCountries = (e) => {
-    e.preventDefault();
-    setCountry(str);
-    fetchCountryInfo(country);
-    console.log(country);
+  const [countryDetails, setCountryDetails] = useState({});
+  const handleOnMovieSubmit = async (str) => {
+    const result = await fetchCountryInfo(str);
+    setCountryDetails(result);
+    console.log(countryDetails);
   };
 
   return (
     <div className="App">
       <Container>
-        <SearchForm
-          setCountries={setCountries}
-          setString={setString}
-          str={str}
-        ></SearchForm>
+        <SearchForm handleOnMovieSubmit={handleOnMovieSubmit}></SearchForm>
         <br />
         <CountryDetails></CountryDetails>
       </Container>

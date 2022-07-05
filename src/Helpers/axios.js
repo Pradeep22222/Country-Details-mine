@@ -4,8 +4,9 @@ export const fetchCountryInfo = async (country) => {
   try {
     const url = apiEndPoint + country;
     const { data } = await axios.get(url);
-    console.log(data[0]);
-    return data;
+    const countryData = data[0];
+
+    return countryData;
   } catch (err) {
     return { status: "error", message: err.message };
   }
