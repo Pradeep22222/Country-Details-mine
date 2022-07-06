@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 
-export const SearchForm = ({ handleOnMovieSubmit }) => {
+export const SearchForm = ({ handleOnCountrySubmit, country }) => {
   const [str, setStr] = useState("");
   const handleOnChange = (e) => {
     e.preventDefault();
     const { value } = e.target;
     setStr(value);
+    country = value;
   };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    handleOnMovieSubmit(str);
+    handleOnCountrySubmit(str);
   };
+
   return (
     <div className="d-flex justify-content-center mt-3">
       <Form onSubmit={handleOnSubmit}>

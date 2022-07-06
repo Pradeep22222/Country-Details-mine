@@ -6,18 +6,24 @@ import { useState } from "react";
 
 function App() {
   const [countryDetails, setCountryDetails] = useState({});
-  const handleOnMovieSubmit = async (str) => {
+  const handleOnCountrySubmit = async (str) => {
     const result = await fetchCountryInfo(str);
     setCountryDetails(result);
     console.log(countryDetails);
   };
-
+  let country;
   return (
     <div className="App">
       <Container>
-        <SearchForm handleOnMovieSubmit={handleOnMovieSubmit}></SearchForm>
+        <SearchForm
+          country={country}
+          handleOnCountrySubmit={handleOnCountrySubmit}
+        ></SearchForm>
         <br />
-        <CountryDetails></CountryDetails>
+        <CountryDetails
+          country={country}
+          countryDetails={countryDetails}
+        ></CountryDetails>
       </Container>
     </div>
   );
