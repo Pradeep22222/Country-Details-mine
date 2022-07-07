@@ -5,7 +5,7 @@ export const CountryDetails = ({ countryDetails, country }) => {
   return (
     <div>
       <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={countryDetails.flags.png} />
+        <Card.Img variant="top" src={countryDetails?.flags?.png} />
         <Card.Body>
           <Card.Title> {country} </Card.Title>
           <ListGroup className="list-group-flush">
@@ -18,23 +18,22 @@ export const CountryDetails = ({ countryDetails, country }) => {
             <ListGroup.Item>Area: {countryDetails.area}</ListGroup.Item>
             <ListGroup.Item>
               languages:
-              {
-                countryDetails.languages[
-                  Object.keys(countryDetails.languages)[0]
-                ]
-              }
+              {countryDetails?.languages &&
+                countryDetails?.languages[
+                  Object.keys(countryDetails?.languages)[0]
+                ]}
             </ListGroup.Item>
           </ListGroup>
 
-          <Card.Text>
-            It falls in {countryDetails.continents[0]} continent. Its currency
+          {/* <Card.Text>
+            It falls in {countryDetails?.continents[0]} continent. Its currency
             is called
             {
-              countryDetails.currencies[
+              countryDetails?.currencies[
                 Object.keys(countryDetails.currencies)[0]
               ][0]
             }
-          </Card.Text>
+          </Card.Text> */}
         </Card.Body>
       </Card>
     </div>
